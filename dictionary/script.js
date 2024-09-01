@@ -2,20 +2,20 @@ const input = document.querySelector('input');
 const btn = document.querySelector('button');
 const dictionary = document.querySelector('.dictionary-app');
 
-// https://api.dictionaryapi.dev/api/v2/entries/en/<word>
+// API Calling
 
 async function dictionaryFun(word) {
     try {
         const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
         const data = await res.json();
         
-        return data[0]; // Corrected to return data[0] instead of res[0]
+        return data[0]; 
 
     } catch (error) {
         console.error('Error fetching the dictionary data:', error);
     }
 }
-
+// Perfoming actions
 btn.addEventListener('click', fetchandCreateCard);
 
 async function fetchandCreateCard() {
@@ -30,10 +30,10 @@ async function fetchandCreateCard() {
 
     let partOfSpeechArray = [];
 
-    for (let i = 0; i < data2.meanings.length; i++) { // Fixed the loop condition
-        partOfSpeechArray.push(data2.meanings[i].partOfSpeech); // Corrected to partOfSpeech
+    for (let i = 0; i < data2.meanings.length; i++) { 
+        partOfSpeechArray.push(data2.meanings[i].partOfSpeech); 
     }
-
+// Inner HTML
     dictionary.innerHTML = ` 
     <div class="card">
         <div class="property">
